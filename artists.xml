@@ -4,13 +4,17 @@
         <name>Death</name>
         <genre>Death Metal</genre>
         <albuns>
-            <album artist="Death">
-                <name>The Sound of Perseverance</name>
+            <album>
+                <name artist="Death">The Sound of Perseverance</name>
                 <year>1998</year>
                 <tracks>
-                    <track album="The Sound of Perseverance" num="1">
-                        <name>Flesh and the Power It Holds</name>
-                        <duration>8:26</duration>
+                    <track>
+                        <name album="The Sound of Perseverance">Flesh and the Power It Holds</name>
+                        <duration>8:42</duration>
+                    </track>
+                    <track>
+                        <name album="The Sound of Perseverance">Scarvenger of Human Sorrow</name>
+                        <duration>5:12</duration>
                     </track>
                 </tracks>
             </album>

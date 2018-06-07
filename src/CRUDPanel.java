@@ -1,15 +1,6 @@
 
 import XMLHandler.XMLHandler;
-import com.sun.org.apache.xml.internal.serialize.OutputFormat;
-import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
-import java.io.File;
-import java.io.FileOutputStream;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -52,9 +43,9 @@ public class CRUDPanel extends javax.swing.JFrame {
         jbtnSearch = new javax.swing.JButton();
         jbtnUpdate = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jtbArtists1 = new javax.swing.JTable();
+        jtbTracks = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jtbArtists2 = new javax.swing.JTable();
+        jtbAlbuns = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Music XML Creator");
@@ -113,7 +104,7 @@ public class CRUDPanel extends javax.swing.JFrame {
             }
         });
 
-        jtbArtists1.setModel(new javax.swing.table.DefaultTableModel(
+        jtbTracks.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -121,9 +112,9 @@ public class CRUDPanel extends javax.swing.JFrame {
                 "Nome", "Duração"
             }
         ));
-        jScrollPane3.setViewportView(jtbArtists1);
+        jScrollPane3.setViewportView(jtbTracks);
 
-        jtbArtists2.setModel(new javax.swing.table.DefaultTableModel(
+        jtbAlbuns.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -131,7 +122,7 @@ public class CRUDPanel extends javax.swing.JFrame {
                 "Nome", "Ano"
             }
         ));
-        jScrollPane4.setViewportView(jtbArtists2);
+        jScrollPane4.setViewportView(jtbAlbuns);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -171,7 +162,7 @@ public class CRUDPanel extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jrbtnArtist)
                     .addComponent(jrbtnTrack, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jrbtnAlbum))
@@ -198,8 +189,18 @@ public class CRUDPanel extends javax.swing.JFrame {
 				"Confirme os dados", JOptionPane.YES_NO_CANCEL_OPTION,
 				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                
-                if(opt == 0 || opt == 2){
-                    xHandler.addArtist(name, genre);
+                if(opt == 0){
+                    if(xHandler.addArtist(name, genre)){
+                       JOptionPane.showMessageDialog(null, "Artista adicionado!");
+                       xHandler.saveFile();
+                       xHandler.openFile();
+                    }else if(opt == 2){
+                        JOptionPane.showMessageDialog(null, "Operação cancelada!");
+                        break;
+                    }else {
+                        JOptionPane.showMessageDialog(null, "Artista já existe!");
+                    }
+                    
                     break;
                 }
             }
@@ -214,8 +215,18 @@ public class CRUDPanel extends javax.swing.JFrame {
 				"Confirme os dados", JOptionPane.YES_NO_CANCEL_OPTION,
 				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                 
-                if(opt == 0 || opt == 2){
-                    xHandler.addAlbum(artist, name, year);
+                if(opt == 0){
+                    if(xHandler.addAlbum(artist, name, year)){
+                       JOptionPane.showMessageDialog(null, "Album adicionado!");
+                       xHandler.saveFile();
+                       xHandler.openFile();
+                    }else if(opt == 2){
+                        JOptionPane.showMessageDialog(null, "Operação cancelada!");
+                        break;
+                    }else {
+                        JOptionPane.showMessageDialog(null, "Album já existe!");
+                    }
+                    
                     break;
                 }
             }
@@ -231,8 +242,18 @@ public class CRUDPanel extends javax.swing.JFrame {
 				"Confirme os dados", JOptionPane.YES_NO_CANCEL_OPTION,
 				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                 
-                if(opt == 0 || opt == 2){
-                    xHandler.addTrack(artist, album, name, duration);
+                if(opt == 0){
+                    if(xHandler.addTrack(artist, album, name, duration)){
+                       JOptionPane.showMessageDialog(null, "Música adicionada!");
+                       xHandler.saveFile();
+                       xHandler.openFile();
+                    }else if(opt == 2){
+                        JOptionPane.showMessageDialog(null, "Operação cancelada!");
+                        break;
+                    }else {
+                        JOptionPane.showMessageDialog(null, "Música já existe!");
+                    }
+                    
                     break;
                 }
             }
@@ -249,10 +270,13 @@ public class CRUDPanel extends javax.swing.JFrame {
 				"Confirme os dados", JOptionPane.YES_NO_CANCEL_OPTION,
 				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                 
-                if(opt == 0 || opt == 2){
+                if(opt == 0){
                     xHandler.removeArtist(name);
                     break;
-                }
+                }else if(opt == 2){
+                    JOptionPane.showMessageDialog(null, "Operação cancelada!");
+                    break;
+                } 
             }
         }else if(jrbtnAlbum.isSelected()){
             while(true){
@@ -264,10 +288,13 @@ public class CRUDPanel extends javax.swing.JFrame {
 				"Confirme os dados", JOptionPane.YES_NO_CANCEL_OPTION,
 				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                 
-                if(opt == 0 || opt == 2){
+                if(opt == 0){
                     xHandler.removeAlbum(artist, name);
                     break;
-                }
+                }else if(opt == 2){
+                    JOptionPane.showMessageDialog(null, "Operação cancelada!");
+                    break;
+                } 
             }
         }else if(jrbtnTrack.isSelected()){
             while(true){
@@ -280,8 +307,11 @@ public class CRUDPanel extends javax.swing.JFrame {
 				"Confirme os dados", JOptionPane.YES_NO_CANCEL_OPTION,
 				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                 
-                if(opt == 0 || opt == 2){
+                if(opt == 0){
                     xHandler.removeTrack(artist, album, name);
+                    break;
+                }else if(opt == 2){
+                    JOptionPane.showMessageDialog(null, "Operação cancelada!");
                     break;
                 }
             }
@@ -298,10 +328,13 @@ public class CRUDPanel extends javax.swing.JFrame {
 				"Confirme os dados", JOptionPane.YES_NO_CANCEL_OPTION,
 				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                 
-                if(opt == 0 || opt == 2){
+                if(opt == 0){
                     xHandler.searchByArtist(name);
                     break;
-                }
+                }else if(opt == 2){
+                    JOptionPane.showMessageDialog(null, "Operação cancelada!");
+                    break;
+                } 
             }
         }else if(jrbtnAlbum.isSelected()){
             while(true){
@@ -313,10 +346,13 @@ public class CRUDPanel extends javax.swing.JFrame {
 				"Confirme os dados", JOptionPane.YES_NO_CANCEL_OPTION,
 				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                 
-                if(opt == 0 || opt == 2){
+                if(opt == 0){
                     xHandler.searchByAlbum(name);
                     break;
-                }
+                }else if(opt == 2){
+                    JOptionPane.showMessageDialog(null, "Operação cancelada!");
+                    break;
+                }            
             }
         }else if(jrbtnTrack.isSelected()){
             while(true){
@@ -327,8 +363,11 @@ public class CRUDPanel extends javax.swing.JFrame {
 				"Confirme os dados", JOptionPane.YES_NO_CANCEL_OPTION,
 				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                 
-                if(opt == 0 || opt == 2){
+                if(opt == 0){
                     xHandler.searchByTrack(name);
+                    break;
+                }else if(opt == 2){
+                    JOptionPane.showMessageDialog(null, "Operação cancelada!");
                     break;
                 }
             }
@@ -411,8 +450,8 @@ public class CRUDPanel extends javax.swing.JFrame {
     private javax.swing.JRadioButton jrbtnAlbum;
     private javax.swing.JRadioButton jrbtnArtist;
     private javax.swing.JRadioButton jrbtnTrack;
+    private javax.swing.JTable jtbAlbuns;
     private javax.swing.JTable jtbArtists;
-    private javax.swing.JTable jtbArtists1;
-    private javax.swing.JTable jtbArtists2;
+    private javax.swing.JTable jtbTracks;
     // End of variables declaration//GEN-END:variables
 }

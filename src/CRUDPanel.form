@@ -76,10 +76,10 @@
                   <Component id="jScrollPane4" min="-2" pref="279" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jrbtnArtist" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jrbtnTrack" alignment="0" min="-2" pref="23" max="-2" attributes="0"/>
-                  <Component id="jrbtnAlbum" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jrbtnAlbum" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -193,7 +193,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jtbArtists1">
+        <Component class="javax.swing.JTable" name="jtbTracks">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="2" rowCount="0">
@@ -229,7 +229,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jtbArtists2">
+        <Component class="javax.swing.JTable" name="jtbAlbuns">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="2" rowCount="0">

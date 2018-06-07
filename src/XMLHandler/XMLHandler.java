@@ -18,13 +18,14 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 /**
  *
  * @author dotah
  */
 public class XMLHandler {
-    Element artists, artist, albuns, album, tracks, track;
+    Element eArtists, eArtist, eName, eGenre, eAlbuns, eAlbum, eYear, eTracks, eTrack, eDuration;
     File file = new File("artists.xml");
     Document doc = null;
     List<Artist> artistList;
@@ -40,7 +41,7 @@ public class XMLHandler {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             doc = builder.parse("artists.xml");
-            artists = (Element) doc.getElementsByTagName("artists").item(0);
+            eArtists = (Element) doc.getElementsByTagName("artists").item(0);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -51,8 +52,8 @@ public class XMLHandler {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             doc = builder.newDocument();
-            artists = doc.createElement("artists");
-            doc.appendChild(artists);
+            eArtists = doc.createElement("artists");
+            doc.appendChild(eArtists);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -76,16 +77,112 @@ public class XMLHandler {
     }
     
     public boolean addArtist(String name, String genre){
+        NodeList nList = doc.getElementsByTagName("artist");
+        
+        for(int i = 0; i < nList.getLength(); i++){
+            if(nList.item(i).getChildNodes().item(1).getTextContent().equals(name)){
+                return false;
+            }
+        }
+        
+        eArtist = doc.createElement("artist");
+        
+        eName = doc.createElement("name");
+        eName.appendChild(doc.createTextNode(name));     
+        eArtist.appendChild(eName);
+        
+        eGenre = doc.createElement("genre");
+        eGenre.appendChild(doc.createTextNode(genre));        
+        eArtist.appendChild(eGenre);
+        
+        eArtists.appendChild(eArtist);       
         
         return true;
     }
     
     public boolean addAlbum(String artist, String name, String year){
+        NodeList nLista = doc.getElementsByTagName("album");
+        
+        for(int i = 0; i < nLista.getLength(); i++){            
+            if(nLista.item(i).getChildNodes().item(1).getTextContent().equals(name)){
+                return false;
+            }
+        }
+        
+        NodeList nList = doc.getElementsByTagName("artist");
+        
+        for(int i=0; i < nList.getLength(); i++){
+            if(nList.item(i).getChildNodes().item(1).getTextContent().equals(artist)){                
+                
+                eAlbum = doc.createElement("album");
+        
+                eName = doc.createElement("name");
+                eName.appendChild(doc.createTextNode(name));
+                eName.setAttribute("artist", artist);
+                eAlbum.appendChild(eName);
+
+                eYear = doc.createElement("year");
+                eYear.appendChild(doc.createTextNode(year));  
+                eAlbum.appendChild(eYear);
+                
+                if(nLista.getLength() <= 0){
+                   eAlbuns = doc.createElement("albuns");
+                   eAlbuns.appendChild(eAlbum);
+                   nList.item(i).appendChild(eAlbuns);   
+                }else {
+                    nList.item(i).getChildNodes().item(5).appendChild(eAlbum);
+                }
+                
+                break;
+            }     
+        }
         
         return true;
     }
     
     public boolean addTrack(String artist, String album, String name, String duration){
+        NodeList nLista = doc.getElementsByTagName("track");
+        
+        for(int i = 0; i < nLista.getLength(); i++){            
+            if(nLista.item(i).getChildNodes().item(1).getTextContent().equals(name)){
+                return false;
+            }
+        }
+        
+        NodeList nList = doc.getElementsByTagName("artist");
+        
+        for(int i=0; i < nList.getLength(); i++){            
+            if(nList.item(i).getChildNodes().item(1).getTextContent().equals(artist)){
+                nList = nList.item(i).getChildNodes();
+                
+                for(int j = 0; j < nList.getLength(); j++){
+                    if(nList.item(5).getChildNodes().item(1).getChildNodes().item(1).getTextContent().equals(album)){
+                                               
+                        eTrack = doc.createElement("track");
+
+                        eName = doc.createElement("name");
+                        eName.appendChild(doc.createTextNode(name));
+                        eName.setAttribute("album", album);
+                        eTrack.appendChild(eName);
+
+                        eDuration = doc.createElement("duration");
+                        eDuration.appendChild(doc.createTextNode(duration));
+                        eTrack.appendChild(eDuration);
+
+                        if(nLista.getLength() <= 0){
+                            eTracks = doc.createElement("tracks");
+                            eTracks.appendChild(eTrack);
+                            nList.item(5).getChildNodes().item(1).appendChild(eTracks);
+                        }else{
+                            nList.item(5).getChildNodes().item(1).getChildNodes().item(5).appendChild(eTrack);
+                        }                       
+                        
+                        break;
+                    }
+                }
+                break;
+            }     
+        }
         
         return true;
     }
