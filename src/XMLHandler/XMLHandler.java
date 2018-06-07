@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
@@ -26,6 +27,9 @@ public class XMLHandler {
     Element artists, artist, albuns, album, tracks, track;
     File file = new File("artists.xml");
     Document doc = null;
+    List<Artist> artistList;
+    List<Album> albumList;
+    List<Track> trackList;
     
     public boolean searchFile(){
         return file.exists();
@@ -101,21 +105,18 @@ public class XMLHandler {
         return true;
     }
     
-    public String searchArtist(String name){
-        String str = "";
+    public List searchByArtist(String name){
         
-        return str;
+        return artistList;
     }
     
-    public String searchAlbum(String name){
-        String str = "";
+    public List searchByAlbum(String name){
         
-        return str;
+        return albumList;
     }
     
-    public String searchTrack(String name){
-        String str = "";
+    public List searchByTrack(String name){
         
-        return str;
+        return trackList;
     }
 }
