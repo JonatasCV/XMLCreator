@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<artists>
+    <artist>
+        <name>Death</name>
+        <genre>Death Metal</genre>
+        <albuns>
+            <album artist="Death">
+                <name>The Sound of Perseverance</name>
+                <year>1998</year>
+                <tracks>
+                    <track album="The Sound of Perseverance" num="1">
+                        <name>Flesh and the Power It Holds</name>
+                        <duration>8:26</duration>
+                    </track>
+                </tracks>
+            </album>
+        </albuns>
+    </artist>
+</artists>
