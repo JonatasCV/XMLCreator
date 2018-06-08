@@ -124,11 +124,13 @@ public class XMLHandler {
                 eYear = doc.createElement("year");
                 eYear.appendChild(doc.createTextNode(year));  
                 eAlbum.appendChild(eYear);
+
+                System.out.println(nLista.getLength());
                 
                 if(nLista.getLength() <= 0){
                    eAlbuns = doc.createElement("albuns");
                    eAlbuns.appendChild(eAlbum);
-                   nList.item(i).appendChild(eAlbuns);   
+                   nList.item(i).appendChild(eAlbuns);
                 }else {
                     nList.item(i).getChildNodes().item(5).appendChild(eAlbum);
                 }
@@ -181,7 +183,7 @@ public class XMLHandler {
                     }
                 }
                 break;
-            }     
+            }
         }
         
         return true;
@@ -201,7 +203,15 @@ public class XMLHandler {
     }
     
     public boolean removeAlbum(String artist, String name){
-                
+        NodeList nList = doc.getElementsByTagName("album");
+        
+        for(int i = 0; i < nList.getLength(); i++){
+            if(nList.item(i).getChildNodes().item(1).getTextContent().equals(name)){             
+                nList.item(i).getParentNode().removeChild(nList.item(i));
+                return true;
+            }
+        }
+        
         return false;
     }
     

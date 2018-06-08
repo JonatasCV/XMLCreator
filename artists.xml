@@ -1,23 +1,41 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <artists>
     <artist>
-        <name>Death</name>
-        <genre>Death Metal</genre>
+        <name>Metallica</name>
+        <genre>Thrash Metal</genre>
         <albuns>
             <album>
-                <name artist="Death">The Sound of Perseverance</name>
-                <year>1998</year>
+                <name artist="Metallica">Kill 'Em All</name>
+                <year>1983</year>
                 <tracks>
                     <track>
-                        <name album="The Sound of Perseverance">Flesh and the Power It Holds</name>
-                        <duration>8:42</duration>
-                    </track>
-                    <track>
-                        <name album="The Sound of Perseverance">Scarvenger of Human Sorrow</name>
-                        <duration>5:12</duration>
+                        <name album="Kill 'Em All">Jump in the Fire</name>
+                        <duration>4:54</duration>
                     </track>
                 </tracks>
             </album>
         </albuns>
+    </artist>
+    <artist>
+        <name>Death</name>
+        <genre>Death Metal</genre>
+        <albuns>
+            <album>
+                <name artist="Death">Symbolic</name>
+                <year>1995</year>
+            </album>
+            <album>
+                <name artist="Death">The Sound of Perseverance</name>
+                <year>1998</year>
+            </album>
+        </albuns>
+    </artist>
+    <artist>
+        <name>Dying Fetus</name>
+        <genre>Death Metal</genre>
+    </artist>
+    <artist>
+        <name>Kreator</name>
+        <genre>Thrash Metal</genre>
     </artist>
 </artists>

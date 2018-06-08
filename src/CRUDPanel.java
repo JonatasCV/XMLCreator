@@ -134,9 +134,9 @@ public class CRUDPanel extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jrbtnArtist, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jrbtnTrack, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jrbtnAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jrbtnAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jrbtnTrack, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -162,10 +162,10 @@ public class CRUDPanel extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jrbtnArtist)
-                    .addComponent(jrbtnTrack, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jrbtnAlbum))
+                    .addComponent(jrbtnAlbum)
+                    .addComponent(jrbtnTrack, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -273,6 +273,8 @@ public class CRUDPanel extends javax.swing.JFrame {
                 if(opt == 0){
                     if(xHandler.removeArtist(name)){
                         JOptionPane.showMessageDialog(null, "Artista removido com sucesso!");
+                        xHandler.saveFile();
+                        xHandler.openFile();
                     }else {
                         JOptionPane.showMessageDialog(null, "Artista não encontrado!");
                     }
@@ -296,6 +298,8 @@ public class CRUDPanel extends javax.swing.JFrame {
                 if(opt == 0){
                     if(xHandler.removeAlbum(artist, name)){
                         JOptionPane.showMessageDialog(null, "Album removido com sucesso!");
+                        xHandler.saveFile();
+                        xHandler.openFile();
                     }else {
                         JOptionPane.showMessageDialog(null, "Album não encontrado!");
                     }
@@ -320,9 +324,12 @@ public class CRUDPanel extends javax.swing.JFrame {
                 if(opt == 0){
                     if(xHandler.removeTrack(artist, album, name)){
                         JOptionPane.showMessageDialog(null, "Artista removido com sucesso!");
+                        xHandler.saveFile();
+                        xHandler.openFile();
                     }else {
                         JOptionPane.showMessageDialog(null, "Artista não encontrado!");
                     }
+                    
                     break;
                 }else if(opt == 2){
                     JOptionPane.showMessageDialog(null, "Operação cancelada!");

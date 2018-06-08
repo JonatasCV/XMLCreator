@@ -41,9 +41,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jrbtnArtist" min="-2" pref="68" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jrbtnTrack" min="-2" pref="69" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jrbtnAlbum" min="-2" pref="68" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jrbtnTrack" min="-2" pref="69" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jScrollPane2" min="-2" pref="232" max="-2" attributes="0"/>
@@ -76,10 +76,10 @@
                   <Component id="jScrollPane4" min="-2" pref="279" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jrbtnArtist" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jrbtnTrack" alignment="0" min="-2" pref="23" max="-2" attributes="0"/>
-                  <Component id="jrbtnAlbum" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jrbtnArtist" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jrbtnAlbum" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jrbtnTrack" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
