@@ -188,13 +188,21 @@ public class XMLHandler {
     }
     
     public boolean removeArtist(String name){
+        NodeList nList = doc.getElementsByTagName("artist");
         
-        return true;
+        for(int i = 0; i < nList.getLength(); i++){
+            if(nList.item(i).getChildNodes().item(1).getTextContent().equals(name)){
+                eArtists.removeChild(nList.item(i));
+                return true;
+            }
+        }
+        
+        return false;
     }
     
     public boolean removeAlbum(String artist, String name){
-        
-        return true;
+                
+        return false;
     }
     
     public boolean removeTrack(String artist, String album, String name){

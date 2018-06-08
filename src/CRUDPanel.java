@@ -194,13 +194,13 @@ public class CRUDPanel extends javax.swing.JFrame {
                        JOptionPane.showMessageDialog(null, "Artista adicionado!");
                        xHandler.saveFile();
                        xHandler.openFile();
-                    }else if(opt == 2){
-                        JOptionPane.showMessageDialog(null, "Operação cancelada!");
-                        break;
                     }else {
                         JOptionPane.showMessageDialog(null, "Artista já existe!");
                     }
                     
+                    break;
+                }else if(opt == 2){
+                    JOptionPane.showMessageDialog(null, "Operação cancelada!");
                     break;
                 }
             }
@@ -220,13 +220,13 @@ public class CRUDPanel extends javax.swing.JFrame {
                        JOptionPane.showMessageDialog(null, "Album adicionado!");
                        xHandler.saveFile();
                        xHandler.openFile();
-                    }else if(opt == 2){
-                        JOptionPane.showMessageDialog(null, "Operação cancelada!");
-                        break;
                     }else {
                         JOptionPane.showMessageDialog(null, "Album já existe!");
                     }
                     
+                    break;
+                }else if(opt == 2){
+                    JOptionPane.showMessageDialog(null, "Operação cancelada!");
                     break;
                 }
             }
@@ -247,13 +247,13 @@ public class CRUDPanel extends javax.swing.JFrame {
                        JOptionPane.showMessageDialog(null, "Música adicionada!");
                        xHandler.saveFile();
                        xHandler.openFile();
-                    }else if(opt == 2){
-                        JOptionPane.showMessageDialog(null, "Operação cancelada!");
-                        break;
                     }else {
                         JOptionPane.showMessageDialog(null, "Música já existe!");
                     }
                     
+                    break;
+                }else if(opt == 2){
+                    JOptionPane.showMessageDialog(null, "Operação cancelada!");
                     break;
                 }
             }
@@ -271,12 +271,17 @@ public class CRUDPanel extends javax.swing.JFrame {
 				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                 
                 if(opt == 0){
-                    xHandler.removeArtist(name);
+                    if(xHandler.removeArtist(name)){
+                        JOptionPane.showMessageDialog(null, "Artista removido com sucesso!");
+                    }else {
+                        JOptionPane.showMessageDialog(null, "Artista não encontrado!");
+                    }
+                    
                     break;
                 }else if(opt == 2){
                     JOptionPane.showMessageDialog(null, "Operação cancelada!");
                     break;
-                } 
+                }
             }
         }else if(jrbtnAlbum.isSelected()){
             while(true){
@@ -289,12 +294,17 @@ public class CRUDPanel extends javax.swing.JFrame {
 				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                 
                 if(opt == 0){
-                    xHandler.removeAlbum(artist, name);
+                    if(xHandler.removeAlbum(artist, name)){
+                        JOptionPane.showMessageDialog(null, "Album removido com sucesso!");
+                    }else {
+                        JOptionPane.showMessageDialog(null, "Album não encontrado!");
+                    }
+                    
                     break;
                 }else if(opt == 2){
                     JOptionPane.showMessageDialog(null, "Operação cancelada!");
                     break;
-                } 
+                }
             }
         }else if(jrbtnTrack.isSelected()){
             while(true){
@@ -308,7 +318,11 @@ public class CRUDPanel extends javax.swing.JFrame {
 				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                 
                 if(opt == 0){
-                    xHandler.removeTrack(artist, album, name);
+                    if(xHandler.removeTrack(artist, album, name)){
+                        JOptionPane.showMessageDialog(null, "Artista removido com sucesso!");
+                    }else {
+                        JOptionPane.showMessageDialog(null, "Artista não encontrado!");
+                    }
                     break;
                 }else if(opt == 2){
                     JOptionPane.showMessageDialog(null, "Operação cancelada!");
@@ -334,7 +348,7 @@ public class CRUDPanel extends javax.swing.JFrame {
                 }else if(opt == 2){
                     JOptionPane.showMessageDialog(null, "Operação cancelada!");
                     break;
-                } 
+                }
             }
         }else if(jrbtnAlbum.isSelected()){
             while(true){
@@ -352,7 +366,7 @@ public class CRUDPanel extends javax.swing.JFrame {
                 }else if(opt == 2){
                     JOptionPane.showMessageDialog(null, "Operação cancelada!");
                     break;
-                }            
+                }         
             }
         }else if(jrbtnTrack.isSelected()){
             while(true){
